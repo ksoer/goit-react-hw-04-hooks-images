@@ -2,22 +2,24 @@ import PropTypes from 'prop-types';
 
 import st from '../styles.module.css';
 
-function ImageGalleryItem({ picture, onOpenPicture }) {
+function ImageGalleryItem({ webformatURL, largeImageURL, tags,  onOpenModal }) {
   return (
-    <li
-      className={st.ImageGalleryItem}
-      onClick={() => {
-        onOpenPicture(picture);
-      }}
-    >
-      <img src={picture.webformatURL} alt={picture.tags} className={st.ImageGalleryItem_image} />
+    <li className={st.ImageGalleryItem}>
+      <img
+        src={webformatURL}
+        alt={tags}
+        data-source={largeImageURL}
+        className={st.ImageGalleryItem_image}
+        onClick={onOpenModal}
+      />
     </li>
   );
 }
 
 ImageGalleryItem.propTypes = {
-  picture: PropTypes.object,
-  onOpenPicture: PropTypes.func,
+  largeImageURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
 };
 
 export default ImageGalleryItem;

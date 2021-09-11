@@ -2,14 +2,17 @@ import st from '../styles.module.css';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import PropTypes from 'prop-types';
 
-function ImageGallery({ gallery, onOpenPicture }) {
+function ImageGallery({ images, onOpenModal }) {
   return (
     <ul className={st.ImageGallery}>
-      {gallery.map(picture => (
+      {images.map(({ id, webformatURL, largeImageURL, tags }) => (
         <ImageGalleryItem
-          key={picture.id}
-          picture={picture}
-          onOpenPicture={onOpenPicture}
+          key={id}
+          className={st.img}
+          webformatURL={webformatURL}
+          largeImageURL={largeImageURL}
+          tags={tags}
+          onOpenModal={onOpenModal}
         />
       ))}
     </ul>
@@ -17,7 +20,7 @@ function ImageGallery({ gallery, onOpenPicture }) {
 }
 
 ImageGallery.propTypes = {
-  gallery: PropTypes.arrayOf(PropTypes.object),
+  images: PropTypes.arrayOf(PropTypes.object),
   onOpenPicture: PropTypes.func,
 };
 
